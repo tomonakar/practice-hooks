@@ -1,24 +1,22 @@
 import React, { useState } from 'react'
 
 const App = props => {
-  // useStateは、現在のstateとstateを更新する関数を返す
-  const [name, setName] = useState(props.name)
-  const [price, setPrice] = useState(props.price)
+  // useStateはオブジェクトを受け取って初期化することができる
+  const [state, setState] = useState(props)
 
+  // ステートの更新もオブジェクトを使って一度に定義できる
   const reset = () => {
-    // useStateが返した関数を使ってstateを更新できる
-    setPrice(props.price)
-    setName(props.name)
+    setState(props)
   }
 
-
+// エレメントの中で使う関数も以下のように書き換える
   return (
     <>
-      <p>{name}の値段は{price}円</p>
-      <button onClick={() => setPrice(price + 1)}>+1</button>
-      <button onClick={() => setPrice(price - 1)}>-1</button>
+      <p>{state.name}の値段は{state.price}円</p>
+      <button onClick={() => setState({...state, price: state.price + 1})}>+1</button>
+      <button onClick={() => setState({...state, price: state.price - 1})}>-1</button>
       <button onClick={reset}>reset</button>
-      <input value={name} onChange={e => setName(e.target.value)} />
+      <input value={state.name} onChange={e => setState({...state, name: e.target.value})} />
     </>
   )
 }
