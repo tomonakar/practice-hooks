@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 
 const App = props => {
-  // initial stateを自分で定義する場合はここで行う
-  // const initialStates = {
-  //   name: '',
-  //   price: 1000
-  // }
-
+  // useStateは、現在のstateとstateを更新する関数を返す
   const [name, setName] = useState(props.name)
   const [price, setPrice] = useState(props.price)
 
   const reset = () => {
+    // useStateが返した関数を使ってstateを更新できる
     setPrice(props.price)
     setName(props.name)
   }
