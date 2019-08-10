@@ -3,15 +3,16 @@ import React, { useState } from 'react'
 const App = props => {
   // useStateはオブジェクトを受け取って初期化することができる
   const [state, setState] = useState(props)
+  const {name, price} = state
 
 // エレメントの中で使う関数も以下のように書き換える
   return (
     <>
-      <p>{state.name}の値段は{state.price}円</p>
-      <button onClick={() => setState({...state, price: state.price + 1})}>+1</button>
-      <button onClick={() => setState({...state, price: state.price - 1})}>-1</button>
+      <p>{name}の値段は{price}円</p>
+      <button onClick={() => setState({...state, price: price + 1})}>+1</button>
+      <button onClick={() => setState({...state, price: price - 1})}>-1</button>
       <button onClick={() => setState(props)}>reset</button>
-      <input value={state.name} onChange={e => setState({...state, name: e.target.value})} />
+      <input value={name} onChange={e => setState({...state, name: e.target.value})} />
     </>
   )
 }
