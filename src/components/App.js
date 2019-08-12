@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Events from './Events'
 import EventForm from './EventForm'
+import OperationLogs from './OperationLogs'
 import reducer from '../reducers/'
 import AppContext from '../contexts/AppContext'
-import operationLogs from '../reducers/operationLogs';
 
 const App = () => {
   const initialState = {
@@ -23,6 +23,7 @@ const App = () => {
       <div className='container-fluid'>
         <EventForm />
         <Events />
+        <OperationLogs />
       </div>
     </AppContext.Provider>
   )
