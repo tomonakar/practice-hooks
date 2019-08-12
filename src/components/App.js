@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 
 // bootstrapを適用
 // @see: https://getbootstrap.com/docs/4.3/getting-started/webpack/#importing-compiled-css
@@ -10,13 +10,20 @@ import OperationLogs from './OperationLogs'
 import reducer from '../reducers/'
 import AppContext from '../contexts/AppContext'
 
+const APP_KEY = 'APP_KEY'
+
 const App = () => {
-  const initialState = {
-    events: [],
-    operationLogs: [],
-  }
+  const appState = localStorage.getItem(APP_KEY)
+  const initialState = appState ? JSON.parse(appState) : {
+      events: [],
+      operationLogs: [],
+    }
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    localStorage.setItem(APP_KEY, JSON.stringify(state))
+  }, [state])
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
