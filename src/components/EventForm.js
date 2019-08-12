@@ -4,7 +4,7 @@ import AppContext from '../contexts/AppContext'
 import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions'
 
 const EventForm = () => {
-  const {state, dispatch} = useContext(AppContext)
+  const { state, dispatch } = useContext(AppContext)
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -46,7 +46,7 @@ const EventForm = () => {
         </div>
 
         <button className='btn btn-primary' disabled={unCreatable} onClick={addEvent}>イベント作成</button>
-        <button className='btn btn-danger' disabled={state.length === 0} onClick={deleteAllEvents}>全イベント削除</button>
+        <button className='btn btn-danger' disabled={state.events.length === 0} onClick={deleteAllEvents}>全イベント削除</button>
       </form>
     </React.Fragment>
   )

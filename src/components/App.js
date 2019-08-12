@@ -6,13 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Events from './Events'
 import EventForm from './EventForm'
-import reducer from '../reducers'
+import reducer from '../reducers/'
 import AppContext from '../contexts/AppContext'
 
 const App = () => {
-  // useReducerの使い方 第3引数は初期化時にやりたい処理を渡す
-  // const [state, dispatch] = useReducer(reducer, initialState, init)
-  const [state, dispatch] = useReducer(reducer, [])
+  const initialState = {
+    events: []
+  }
+
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
