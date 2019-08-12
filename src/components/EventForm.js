@@ -5,6 +5,7 @@ import {
   CREATE_EVENT,
   DELETE_ALL_EVENTS,
   ADD_OPERATION_LOG,
+  DELETE_ALL_OPERATION_LOGS,
 } from '../actions'
 import { timeCurrentIso8601 } from '../utils'
 
@@ -43,6 +44,17 @@ const EventForm = () => {
     }
   }
 
+  const deleteAllOperationLogs = e => {
+    e.preventDefault()
+    const result = window.confirm('全ての操作ログを本当に削除しても良いですか？')
+    if (result) {
+      dispatch({
+        type: DELETE_ALL_OPERATION_LOGS,
+      })
+    }
+
+  }
+
   const unCreatable = title === '' || body === ''
 
   return (
@@ -61,6 +73,7 @@ const EventForm = () => {
 
         <button className='btn btn-primary' disabled={unCreatable} onClick={addEvent}>イベント作成</button>
         <button className='btn btn-danger' disabled={state.events.length === 0} onClick={deleteAllEvents}>全イベント削除</button>
+        <button className='btn btn-danger' disabled={state.operationLogs.length === 0} onClick={deleteAllOperationLogs}>全操作ログを削除</button>
       </form>
     </React.Fragment>
   )
