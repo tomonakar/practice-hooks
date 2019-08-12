@@ -8,10 +8,12 @@ import Events from './Events'
 import EventForm from './EventForm'
 import reducer from '../reducers/'
 import AppContext from '../contexts/AppContext'
+import operationLogs from '../reducers/operationLogs';
 
 const App = () => {
   const initialState = {
-    events: []
+    events: [],
+    operationLogs: [],
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
